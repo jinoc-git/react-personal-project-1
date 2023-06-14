@@ -1,5 +1,5 @@
 export function DoneButton({ item, onChangeHandler }) {
-  if(item.isDone === false) {
+  if (item.isDone === false) {
     return (
       <button
         className="done-btn"
@@ -21,4 +21,3 @@ export function DoneButton({ item, onChangeHandler }) {
     );
   }
 }
-

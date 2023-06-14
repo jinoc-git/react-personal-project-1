@@ -6,7 +6,13 @@ function Todo({ item, onChangeHandler, removeHandler }) {
       <h3>{item.title}</h3>
       <p>{item.body}</p>
       <div>
-        <button className="delete-btn" onClick={() => {removeHandler(item.id)}}>삭제하기</button>
+        <button
+          className="delete-btn"
+          onClick={() => {
+            removeHandler(item.id);
+          }}>
+          삭제하기
+        </button>
         <DoneButton item={item} onChangeHandler={onChangeHandler} />
       </div>
     </div>

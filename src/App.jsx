@@ -6,7 +6,7 @@ import Main from "./components/Main";
 function App() {
   const [todos, setTodos] = useState([
     {
-      id: 0,
+      id: 1,
       title: "가나다",
       body: "가나다",
       isDone: false,

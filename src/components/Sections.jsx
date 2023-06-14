@@ -1,13 +1,15 @@
 import Todo from "./Todo";
 
-function Done({ todos, onChangeHandler, removeHandler }) {
+function Sections({ todos, onChangeHandler, removeHandler, section }) {
+  const { name, h2, isDone } = section;
+
   return (
-    <section className="done-box-wrap">
-      <h2>Done</h2>
-      <div className="done-box">
+    <section className={name + "-wrap"}>
+      <h2>{h2}</h2>
+      <div className={name}>
         {todos
           .filter((item) => {
-            return item.isDone === true;
+            return item.isDone === isDone;
           })
           .map((item) => {
             return (
@@ -24,4 +26,4 @@ function Done({ todos, onChangeHandler, removeHandler }) {
   );
 }
 
-export default Done;
+export default Sections;

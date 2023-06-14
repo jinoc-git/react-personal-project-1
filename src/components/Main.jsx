@@ -1,5 +1,5 @@
-import Working from "./Working";
-import Done from "./Done";
+import sectionList from "../sectionsList";
+import Sections from "./Sections";
 
 function Main({ todos, setTodos }) {
   const onChangeHandler = (id) => {
@@ -23,16 +23,17 @@ function Main({ todos, setTodos }) {
 
   return (
     <main>
-      <Working
-        todos={todos}
-        onChangeHandler={onChangeHandler}
-        removeHandler={removeHandler}
-      />
-      <Done
-        todos={todos}
-        onChangeHandler={onChangeHandler}
-        removeHandler={removeHandler}
-      />
+      {sectionList.map((section) => {
+        return (
+          <Sections
+            key={section.id}
+            todos={todos}
+            onChangeHandler={onChangeHandler}
+            removeHandler={removeHandler}
+            section={section}
+          />
+        );
+      })}
     </main>
   );
 }
