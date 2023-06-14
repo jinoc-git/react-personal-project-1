@@ -1,7 +1,7 @@
 import Working from "./Working";
 import Done from "./Done";
 
-function Sections({ todos, setTodos }) {
+function Main({ todos, setTodos }) {
   const onChangeHandler = (id) => {
     const chageTodo = todos.map((todo) => {
       if (todo.id === id) {
@@ -22,7 +22,7 @@ function Sections({ todos, setTodos }) {
   };
 
   return (
-    <>
+    <main>
       <Working
         todos={todos}
         onChangeHandler={onChangeHandler}
@@ -33,8 +33,8 @@ function Sections({ todos, setTodos }) {
         onChangeHandler={onChangeHandler}
         removeHandler={removeHandler}
       />
-    </>
+    </main>
   );
 }
 
-export default Sections;
+export default Main;
