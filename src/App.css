@@ -72,7 +72,8 @@ header {
   background-color: teal;
 }
 
-.working-box, .done-box {
+.working-box,
+.done-box {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -108,10 +109,15 @@ header {
 
 .box button:nth-child(1) {
   border: 2px solid red;
-  box-shadow: rgba(255, 0, 0, 0.5) 0px 3px 8px;
+  box-shadow: rgba(255, 0, 0, 0.6) 0px 3px 8px;
 }
 
-.box button:nth-child(2) {
-  border: 2px solid green;
+.working-box .box button:nth-child(2) {
+  border: 2px solid rgb(0, 202, 0);
   box-shadow: rgba(0, 255, 0, 0.24) 0px 3px 8px;
+}
+
+.done-box .box button:nth-child(2) {
+  border: 2px solid yellow;
+  box-shadow: rgb(255, 255, 0, 0.4) 0px 3px 8px;
 }
