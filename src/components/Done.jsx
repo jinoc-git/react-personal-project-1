@@ -1,13 +1,13 @@
 import Todo from "./Todo";
 
-function Working({ todos, onChangeHandler, removeHandler }) {
+function Done({ todos, onChangeHandler, removeHandler }) {
   return (
-    <section className="working-box-wrap">
-      <h2>Working</h2>
-      <div className="working-box">
+    <section className="done-box-wrap">
+      <h2>Done</h2>
+      <div className="done-box">
         {todos
           .filter((item) => {
-            return item.isDone === false;
+            return item.isDone === true;
           })
           .map((item) => {
             return (
@@ -24,4 +24,4 @@ function Working({ todos, onChangeHandler, removeHandler }) {
   );
 }
 
-export default Working;
+export default Done;
