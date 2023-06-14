@@ -13,7 +13,7 @@ function Main({ todos, setTodos }) {
       }
       return todo;
     });
-    setTodos([...chageTodo]);
+    setTodos(chageTodo);
   };
 
   const removeHandler = (id) => {
