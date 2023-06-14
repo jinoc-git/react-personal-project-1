@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import Layout from "./components/Layout";
 import Header from "./components/Header";
 import Main from "./components/Main";
 
@@ -14,10 +14,10 @@ function App() {
   ]);
 
   return (
-    <div className="container">
+    <Layout>
       <Header todos={todos} setTodos={setTodos} />
       <Main todos={todos} setTodos={setTodos} />
-    </div>
+    </Layout>
   );
 }
 
