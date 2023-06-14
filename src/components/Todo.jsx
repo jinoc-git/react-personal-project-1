@@ -1,5 +1,3 @@
-import { DoneButton } from "./Button";
-
 function Todo({ item, onChangeHandler, removeHandler }) {
   return (
     <div className="box" key={item.id}>
@@ -13,7 +11,13 @@ function Todo({ item, onChangeHandler, removeHandler }) {
           }}>
           삭제하기
         </button>
-        <DoneButton item={item} onChangeHandler={onChangeHandler} />
+        <button
+          className="done-btn"
+          onClick={() => {
+            onChangeHandler(item.id);
+          }}>
+          {item.isDone ? "취소" : "완료"}
+        </button>
       </div>
     </div>
   );
