@@ -3,6 +3,7 @@ import { useState } from "react";
 function Header({ todos, setTodos }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [nextid, setNextid] = useState(2)
   const titleHandler = (event) => {
     setTitle(event.target.value);
   };
@@ -13,7 +14,7 @@ function Header({ todos, setTodos }) {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     let data = {
-      id: todos.length + 1,
+      id: setNextid(nextid + 1),
       title,
       body,
       isDone: false,
