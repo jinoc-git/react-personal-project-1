@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Header({ todos, setTodos, getLsData, setLsData }) {
+function Header({ todos, setLsData }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const getLsNum = () => {
