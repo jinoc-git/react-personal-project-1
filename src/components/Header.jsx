@@ -3,7 +3,7 @@ import { useState } from "react";
 function Header({ todos, setTodos }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [nextid, setNextid] = useState(2)
+  const [nextid, setNextid] = useState(2);
   const titleHandler = (event) => {
     setTitle(event.target.value);
   };
@@ -14,7 +14,7 @@ function Header({ todos, setTodos }) {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     let data = {
-      id: setNextid(nextid + 1),
+      id: nextid,
       title,
       body,
       isDone: false,
@@ -22,6 +22,7 @@ function Header({ todos, setTodos }) {
     setTodos([...todos, data]);
     setTitle("");
     setBody("");
+    setNextid(nextid + 1);
   };
   return (
     <header>
