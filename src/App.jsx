@@ -4,19 +4,39 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 
 function App() {
-  const [todos, setTodos] = useState([
+  const getLsData = () => {
+    const lsData = JSON.parse(localStorage.getItem("todo"));
+    return lsData;
+  };
+  const setLsData = (data) => {
+    localStorage.setItem("todo", JSON.stringify(data));
+    setTodos(getLsData());
+  };
+  const firstData = [
     {
       id: 1,
-      title: "가나다",
-      body: "가나다",
+      title: "리액트 강의 복습",
+      body: "리액트 입문 강의 복습하기",
       isDone: false,
     },
-  ]);
-
+  ];
+  const dataTodoCount = () => {
+    let count = getLsData();
+    if(count === null) return 0
+    return count.length;
+  }
+  const [todos, setTodos] = useState(
+    dataTodoCount() !== 0 ? getLsData() : firstData
+  );
   return (
     <Layout>
-      <Header todos={todos} setTodos={setTodos} />
-      <Main todos={todos} setTodos={setTodos} />
+      <Header
+        todos={todos}
+        setTodos={setTodos}
+        getLsData={getLsData}
+        setLsData={setLsData}
+      />
+      <Main todos={todos} setTodos={setTodos} setLsData={setLsData} />
     </Layout>
   );
 }
