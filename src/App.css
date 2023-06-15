@@ -32,7 +32,7 @@ header {
   padding: 20px;
 }
 
-.tofolist-form {
+.todolist-form {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,12 +44,12 @@ header {
   background-color: rgba(0, 128, 128, 0.2);
 }
 
-.tofolist-form label {
+.todolist-form label {
   font-weight: bold;
   margin-right: 20px;
 }
 
-.tofolist-form input {
+.todolist-form input {
   width: 250px;
   height: 40px;
   margin-left: 20px;
@@ -61,7 +61,7 @@ header {
   background-color: teal;
 }
 
-.tofolist-form button {
+.todolist-form button {
   cursor: pointer;
   width: 120px;
   height: 40px;

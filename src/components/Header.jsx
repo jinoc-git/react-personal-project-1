@@ -37,7 +37,6 @@ function Header({ todos, setLsData }) {
       body,
       isDone: false,
     };
-    console.log(nextid);
     setLsData([...todos, data]);
     afterSubmit();
   };
@@ -48,7 +47,7 @@ function Header({ todos, setLsData }) {
         <h1>My Todo List</h1>
         <p>React</p>
       </div>
-      <form name="tofolist-form" className="tofolist-form">
+      <form name="todolist-form" className="todolist-form">
         <div>
           <label>
             제목
