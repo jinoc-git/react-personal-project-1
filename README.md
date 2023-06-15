@@ -20,6 +20,7 @@ LocalStorage를 사용하여 새로고침 시 데이터가 유지됩니다.
 - Todo 완료 상태 변경
 - LocalStorage로 데이터 유지
 # 컴포넌트
+- App
 - Layout
 - Header
 - Main
