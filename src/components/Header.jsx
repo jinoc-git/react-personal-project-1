@@ -1,8 +1,22 @@
 import { useState } from "react";
 
-function Header({ todos, setTodos }) {
+function Header({ todos, setLsData }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const getLsNum = () => {
+    const lsNumData = JSON.parse(localStorage.getItem("num"));
+    return lsNumData;
+  };
+  const setLsNum = (num) => {
+    localStorage.setItem("num", JSON.stringify(num));
+    setNextid(getLsNum);
+  };
+  const dataNumCount = () => {
+    let count = getLsNum();
+    if (count === null) return 0;
+    return count.length;
+  };
+  const [nextid, setNextid] = useState(dataNumCount() !== 0 ? getLsNum() : 2);
   const titleHandler = (event) => {
     setTitle(event.target.value);
   };
@@ -10,18 +24,24 @@ function Header({ todos, setTodos }) {
     setBody(event.target.value);
   };
 
+  const afterSubmit = () => {
+    setTitle("");
+    setBody("");
+    setLsNum(nextid + 1);
+  };
   const onSubmitHandler = (event) => {
     event.preventDefault();
     let data = {
-      id: todos.length + 1,
+      id: nextid,
       title,
       body,
       isDone: false,
     };
-    setTodos([...todos, data]);
-    setTitle("");
-    setBody("");
+    console.log(nextid);
+    setLsData([...todos, data]);
+    afterSubmit();
   };
+
   return (
     <header>
       <div className="title">
