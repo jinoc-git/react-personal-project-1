@@ -1,7 +1,7 @@
 import sectionList from "../sectionsList";
 import Sections from "./Sections";
 
-function Main({ todos, setTodos }) {
+function Main({ todos, setTodos, setLsData }) {
   const onChangeHandler = (id) => {
     const chageTodo = todos.map((todo) => {
       if (todo.id === id) {
@@ -13,12 +13,12 @@ function Main({ todos, setTodos }) {
       }
       return todo;
     });
-    setTodos(chageTodo);
+    setLsData(chageTodo);
   };
 
   const removeHandler = (id) => {
     let newTodos = todos.filter((item) => item.id !== id);
-    setTodos(newTodos);
+    setLsData(newTodos);
   };
 
   return (
