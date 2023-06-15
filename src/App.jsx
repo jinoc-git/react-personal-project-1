@@ -32,11 +32,9 @@ function App() {
     <Layout>
       <Header
         todos={todos}
-        setTodos={setTodos}
-        getLsData={getLsData}
         setLsData={setLsData}
       />
-      <Main todos={todos} setTodos={setTodos} setLsData={setLsData} />
+      <Main todos={todos} setLsData={setLsData} />
     </Layout>
   );
 }

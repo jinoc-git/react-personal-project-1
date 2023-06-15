@@ -1,7 +1,7 @@
 import sectionList from "../sectionsList";
 import Sections from "./Sections";
 
-function Main({ todos, setTodos, setLsData }) {
+function Main({ todos, setLsData }) {
   const onChangeHandler = (id) => {
     const chageTodo = todos.map((todo) => {
       if (todo.id === id) {
