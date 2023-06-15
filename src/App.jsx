@@ -20,13 +20,8 @@ function App() {
       isDone: false,
     },
   ];
-  const dataTodoCount = () => {
-    let count = getLsData();
-    if(count === null) return 0
-    return count.length;
-  }
   const [todos, setTodos] = useState(
-    dataTodoCount() !== 0 ? getLsData() : firstData
+    localStorage.length !== 0 ? getLsData() : firstData
   );
   return (
     <Layout>
