@@ -5,11 +5,7 @@ function Main({ todos, setLsData }) {
   const onChangeHandler = (id) => {
     const chageTodo = todos.map((todo) => {
       if (todo.id === id) {
-        if (todo.isDone === false) {
-          todo.isDone = true;
-        } else {
-          todo.isDone = false;
-        }
+        todo.isDone = !todo.isDone;
       }
       return todo;
     });
@@ -17,7 +13,7 @@ function Main({ todos, setLsData }) {
   };
 
   const removeHandler = (id) => {
-    let newTodos = todos.filter((item) => item.id !== id);
+    const newTodos = todos.filter((item) => item.id !== id);
     setLsData(newTodos);
   };
 

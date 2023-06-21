@@ -3,10 +3,12 @@ import GlobalStyle from "./components/GlobalStyle";
 import Layout from "./components/Layout";
 import Header from "./components/Header";
 import Main from "./components/Main";
+import uuid from "react-uuid";
 
 function App() {
   const getLsData = () => {
     const lsData = JSON.parse(localStorage.getItem("todo"));
+    if (lsData === null) return false;
     return lsData;
   };
   const setLsData = (data) => {
@@ -15,15 +17,13 @@ function App() {
   };
   const firstData = [
     {
-      id: 1,
+      id: uuid(),
       title: "리액트 강의 복습",
       body: "리액트 입문 강의 복습하기",
       isDone: false,
     },
   ];
-  const [todos, setTodos] = useState(
-    localStorage.length !== 0 ? getLsData() : firstData
-  );
+  const [todos, setTodos] = useState(getLsData() ? getLsData() : firstData);
   return (
     <>
       <GlobalStyle></GlobalStyle>

@@ -1,40 +1,31 @@
 import { useState } from "react";
 import Form from "./Form";
 import { styled } from "styled-components";
+import uuid from "react-uuid";
 
 function Header({ todos, setLsData }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const getLsNum = () => {
-    const lsNumData = JSON.parse(localStorage.getItem("num"));
-    return lsNumData;
+
+  const titleHandler = ({ target }) => {
+    setTitle(target.value);
   };
-  const setLsNum = (num) => {
-    localStorage.setItem("num", JSON.stringify(num));
-    setNextid(getLsNum);
-  };
-  const dataNumCount = () => {
-    let count = getLsNum();
-    if (count === null) return 0;
-    return count.length;
-  };
-  const [nextid, setNextid] = useState(dataNumCount() !== 0 ? getLsNum() : 2);
-  const titleHandler = (event) => {
-    setTitle(event.target.value);
-  };
-  const bodyHandler = (event) => {
-    setBody(event.target.value);
+  const bodyHandler = ({ target }) => {
+    setBody(target.value);
   };
 
   const afterSubmit = () => {
     setTitle("");
     setBody("");
-    setLsNum(nextid + 1);
   };
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    let data = {
-      id: nextid,
+    if (title.length === 0 || body.length === 0) {
+      alert("제목과 내용을 입력해 주세요.");
+      return false;
+    }
+    const data = {
+      id: uuid(),
       title,
       body,
       isDone: false,
