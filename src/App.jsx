@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import uuid from "react-uuid";
 
+
 function App() {
   const getLsData = () => {
     const lsData = JSON.parse(localStorage.getItem("todo"));

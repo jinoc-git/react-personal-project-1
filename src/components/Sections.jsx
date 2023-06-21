@@ -1,14 +1,19 @@
 import { styled } from "styled-components";
 import Todo from "./Todo";
+import { useSelector, useDispatch } from "react-redux";
 
 function Sections({ todos, onChangeHandler, removeHandler, section }) {
-  const { name, h2, isDone } = section;
-
+  const { h2, isDone } = section;
+  const todoState = useSelector((state) => {
+    return state.changeStateHandler;
+  });
+  console.log(todoState);
+  const dispatch = useDispatch();
   return (
     <section>
       <h2>{h2}</h2>
       <StDiv>
-        {todos
+        {todoState
           .filter((item) => {
             return item.isDone === isDone;
           })
