@@ -5,23 +5,19 @@ function Header({ todos, setLsData }) {
   const [body, setBody] = useState("");
   const getLsNum = () => {
     const lsNumData = JSON.parse(localStorage.getItem("num"));
+    if (lsNumData === null) return false;
     return lsNumData;
   };
   const setLsNum = (num) => {
     localStorage.setItem("num", JSON.stringify(num));
     setNextid(getLsNum);
   };
-  const dataNumCount = () => {
-    let count = getLsNum();
-    if (count === null) return 0;
-    return count.length;
+  const [nextid, setNextid] = useState(getLsNum() ? getLsNum() : 2);
+  const titleHandler = ({ target }) => {
+    setTitle(target.value);
   };
-  const [nextid, setNextid] = useState(dataNumCount() !== 0 ? getLsNum() : 2);
-  const titleHandler = (event) => {
-    setTitle(event.target.value);
-  };
-  const bodyHandler = (event) => {
-    setBody(event.target.value);
+  const bodyHandler = ({ target }) => {
+    setBody(target.value);
   };
 
   const afterSubmit = () => {
@@ -31,7 +27,11 @@ function Header({ todos, setLsData }) {
   };
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    let data = {
+    if (title.length === 0 || body.length === 0) {
+      alert("제목과 내용을 입력해 주세요.");
+      return false;
+    }
+    const data = {
       id: nextid,
       title,
       body,
@@ -47,7 +47,10 @@ function Header({ todos, setLsData }) {
         <h1>My Todo List</h1>
         <p>React</p>
       </div>
-      <form name="todolist-form" className="todolist-form">
+      <form
+        name="todolist-form"
+        className="todolist-form"
+        onSubmit={onSubmitHandler}>
         <div>
           <label>
             제목
@@ -58,7 +61,7 @@ function Header({ todos, setLsData }) {
             <input value={body} onChange={bodyHandler} />
           </label>
         </div>
-        <button onClick={onSubmitHandler}>추가하기</button>
+        <button type="submit">추가하기</button>
       </form>
     </header>
   );
