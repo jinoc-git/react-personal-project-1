@@ -6,6 +6,7 @@ import Main from "./components/Main";
 function App() {
   const getLsData = () => {
     const lsData = JSON.parse(localStorage.getItem("todo"));
+    if (lsData === null) return false;
     return lsData;
   };
   const setLsData = (data) => {
@@ -20,15 +21,10 @@ function App() {
       isDone: false,
     },
   ];
-  const [todos, setTodos] = useState(
-    localStorage.length !== 0 ? getLsData() : firstData
-  );
+  const [todos, setTodos] = useState(getLsData() ? getLsData() : firstData);
   return (
     <Layout>
-      <Header
-        todos={todos}
-        setLsData={setLsData}
-      />
+      <Header todos={todos} setLsData={setLsData} />
       <Main todos={todos} setLsData={setLsData} />
     </Layout>
   );
