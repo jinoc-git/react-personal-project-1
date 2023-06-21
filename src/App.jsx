@@ -1,4 +1,5 @@
 import { useState } from "react";
+import GlobalStyle from "./components/GlobalStyle";
 import Layout from "./components/Layout";
 import Header from "./components/Header";
 import Main from "./components/Main";
@@ -24,13 +25,13 @@ function App() {
     localStorage.length !== 0 ? getLsData() : firstData
   );
   return (
-    <Layout>
-      <Header
-        todos={todos}
-        setLsData={setLsData}
-      />
-      <Main todos={todos} setLsData={setLsData} />
-    </Layout>
+    <>
+      <GlobalStyle></GlobalStyle>
+      <Layout>
+        <Header todos={todos} setLsData={setLsData} />
+        <Main todos={todos} setLsData={setLsData} />
+      </Layout>
+    </>
   );
 }
 

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Form from "./Form";
+import { styled } from "styled-components";
 
 function Header({ todos, setLsData }) {
   const [title, setTitle] = useState("");
@@ -42,26 +44,32 @@ function Header({ todos, setLsData }) {
   };
 
   return (
-    <header>
-      <div className="title">
+    <StHeader>
+      <StTitleDiv>
         <h1>My Todo List</h1>
         <p>React</p>
-      </div>
-      <form name="todolist-form" className="todolist-form">
-        <div>
-          <label>
-            제목
-            <input value={title} onChange={titleHandler} />
-          </label>
-          <label>
-            내용
-            <input value={body} onChange={bodyHandler} />
-          </label>
-        </div>
-        <button onClick={onSubmitHandler}>추가하기</button>
-      </form>
-    </header>
+      </StTitleDiv>
+      <Form
+        onSubmitHandler={onSubmitHandler}
+        titleHandler={titleHandler}
+        bodyHandler={bodyHandler}
+        title={title}
+        body={body}
+      />
+    </StHeader>
   );
 }
 
 export default Header;
+
+const StHeader = styled.header`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StTitleDiv = styled.div`
+  cursor: default;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+`;
