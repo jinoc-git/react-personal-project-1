@@ -1,18 +1,10 @@
 import { useState } from "react";
+import uuid from "react-uuid";
 
 function Header({ todos, setLsData }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const getLsNum = () => {
-    const lsNumData = JSON.parse(localStorage.getItem("num"));
-    if (lsNumData === null) return false;
-    return lsNumData;
-  };
-  const setLsNum = (num) => {
-    localStorage.setItem("num", JSON.stringify(num));
-    setNextid(getLsNum);
-  };
-  const [nextid, setNextid] = useState(getLsNum() ? getLsNum() : 2);
+
   const titleHandler = ({ target }) => {
     setTitle(target.value);
   };
@@ -23,7 +15,6 @@ function Header({ todos, setLsData }) {
   const afterSubmit = () => {
     setTitle("");
     setBody("");
-    setLsNum(nextid + 1);
   };
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -32,7 +23,7 @@ function Header({ todos, setLsData }) {
       return false;
     }
     const data = {
-      id: nextid,
+      id: uuid(),
       title,
       body,
       isDone: false,
