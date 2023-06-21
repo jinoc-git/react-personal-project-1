@@ -2,6 +2,7 @@ import { useState } from "react";
 import Layout from "./components/Layout";
 import Header from "./components/Header";
 import Main from "./components/Main";
+import uuid from "react-uuid";
 
 function App() {
   const getLsData = () => {
@@ -15,7 +16,7 @@ function App() {
   };
   const firstData = [
     {
-      id: 1,
+      id: uuid(),
       title: "리액트 강의 복습",
       body: "리액트 입문 강의 복습하기",
       isDone: false,
