@@ -1,61 +1,37 @@
-import { useState } from "react";
-import uuid from "react-uuid";
+import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-function Header({ todos, setLsData }) {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-
-  const titleHandler = ({ target }) => {
-    setTitle(target.value);
+function Header() {
+  const navigate = useNavigate();
+  const goToHome = () => {
+    navigate("/");
   };
-  const bodyHandler = ({ target }) => {
-    setBody(target.value);
-  };
-
-  const afterSubmit = () => {
-    setTitle("");
-    setBody("");
-  };
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    if (title.length === 0 || body.length === 0) {
-      alert("제목과 내용을 입력해 주세요.");
-      return false;
-    }
-    const data = {
-      id: uuid(),
-      title,
-      body,
-      isDone: false,
-    };
-    setLsData([...todos, data]);
-    afterSubmit();
-  };
-
   return (
-    <header>
-      <div className="title">
-        <h1>My Todo List</h1>
+    <StHeader>
+      <StTitleNav>
+        <h1 onClick={goToHome}>My Todo List</h1>
         <p>React</p>
-      </div>
-      <form
-        name="todolist-form"
-        className="todolist-form"
-        onSubmit={onSubmitHandler}>
-        <div>
-          <label>
-            제목
-            <input value={title} onChange={titleHandler} />
-          </label>
-          <label>
-            내용
-            <input value={body} onChange={bodyHandler} />
-          </label>
-        </div>
-        <button type="submit">추가하기</button>
-      </form>
-    </header>
+      </StTitleNav>      
+    </StHeader>
   );
 }
 
 export default Header;
+
+const StHeader = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(25, 25, 25);
+`;
+
+const StTitleNav = styled.nav`
+  cursor: default;
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+`;

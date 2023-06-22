@@ -1,37 +1,21 @@
+import { styled } from "styled-components";
 import sectionList from "../sectionsList";
+import Form from "./Form";
 import Sections from "./Sections";
 
-function Main({ todos, setLsData }) {
-  const onChangeHandler = (id) => {
-    const chageTodo = todos.map((todo) => {
-      if (todo.id === id) {
-        todo.isDone = !todo.isDone;
-      }
-      return todo;
-    });
-    setLsData(chageTodo);
-  };
-
-  const removeHandler = (id) => {
-    const newTodos = todos.filter((item) => item.id !== id);
-    setLsData(newTodos);
-  };
-
+function Main() {
   return (
-    <main>
+    <StMain>
+      <Form />
       {sectionList.map((section) => {
-        return (
-          <Sections
-            key={section.id}
-            todos={todos}
-            onChangeHandler={onChangeHandler}
-            removeHandler={removeHandler}
-            section={section}
-          />
-        );
+        return <Sections key={section.id} section={section} />;
       })}
-    </main>
+    </StMain>
   );
 }
 
 export default Main;
+
+export const StMain = styled.main`
+  margin-top: 64px;
+`
