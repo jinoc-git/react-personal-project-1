@@ -1,6 +1,12 @@
 import { styled } from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { changeTodo, deleteTodo } from "../redux/modules/changeTodosHandler";
 
-function Todo({ item, onChangeHandler, removeHandler }) {
+function Todo({ item }) {
+  const todos = useSelector((state) => {
+    return state.todosHandler;
+  });
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <h3>{item.title}</h3>
@@ -9,14 +15,14 @@ function Todo({ item, onChangeHandler, removeHandler }) {
         <Button
           color={"red"}
           onClick={() => {
-            removeHandler(item.id);
+            dispatch(deleteTodo({ todos, id: item.id }));
           }}>
           삭제하기
         </Button>
         <Button
           color={item.isDone ? "yellow" : "green"}
           onClick={() => {
-            onChangeHandler(item.id);
+            dispatch(changeTodo({ todos, id: item.id }));
           }}>
           {item.isDone ? "취소" : "완료"}
         </Button>

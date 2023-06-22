@@ -1,9 +1,12 @@
 import { styled } from "styled-components";
 import Todo from "./Todo";
+import { useSelector } from "react-redux";
 
-function Sections({ todos, onChangeHandler, removeHandler, section }) {
-  const { name, h2, isDone } = section;
-
+function Sections({ section }) {
+  const { h2, isDone } = section;
+  const todos = useSelector((state) => {
+    return state.todosHandler;
+  });
   return (
     <section>
       <h2>{h2}</h2>
@@ -17,8 +20,6 @@ function Sections({ todos, onChangeHandler, removeHandler, section }) {
               <Todo
                 key={item.id}
                 item={item}
-                onChangeHandler={onChangeHandler}
-                removeHandler={removeHandler}
               />
             );
           })}
