@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { changeTodo, deleteTodo } from "../redux/modules/changeTodosHandler";
+import { Link } from "react-router-dom";
 
 function Todo({ item }) {
   const todos = useSelector((state) => {
@@ -9,24 +10,28 @@ function Todo({ item }) {
   const dispatch = useDispatch();
   return (
     <Wrapper>
-      <h3>{item.title}</h3>
-      <p>{item.body}</p>
-      <BtnWrapper>
-        <Button
-          color={"red"}
-          onClick={() => {
-            dispatch(deleteTodo({ todos, id: item.id }));
-          }}>
-          삭제하기
-        </Button>
-        <Button
-          color={item.isDone ? "yellow" : "green"}
-          onClick={() => {
-            dispatch(changeTodo({ todos, id: item.id }));
-          }}>
-          {item.isDone ? "취소" : "완료"}
-        </Button>
-      </BtnWrapper>
+      <StLink to={"/todo"}>
+        <StH3>{item.title}</StH3>
+        <StP>{item.body}</StP>
+        <StBtnWrapper>
+          <StButton
+            color={"red"}
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(deleteTodo({ todos, id: item.id }));
+            }}>
+            삭제하기
+          </StButton>
+          <StButton
+            color={item.isDone ? "yellow" : "green"}
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(changeTodo({ todos, id: item.id }));
+            }}>
+            {item.isDone ? "취소" : "완료"}
+          </StButton>
+        </StBtnWrapper>
+      </StLink>
     </Wrapper>
   );
 }
@@ -34,21 +39,36 @@ function Todo({ item }) {
 export default Todo;
 
 const Wrapper = styled.div`
+  border: 3px solid teal;
+  box-shadow: rgba(0, 255, 191, 0.39) 0px 3px 8px;
+  border-radius: 15px;
+`;
+const StLink = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 275px;
   height: 200px;
   padding: 20px;
-  border: 3px solid teal;
-  box-shadow: rgba(0, 255, 191, 0.39) 0px 3px 8px;
-  border-radius: 15px;
+  color: #fff;
 `;
-const BtnWrapper = styled.div`
+const StH3 = styled.h3`
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+const StP = styled.p`
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+const StBtnWrapper = styled.div`
   display: flex;
   gap: 10px;
 `;
-const Button = styled.button`
+const StButton = styled.button`
   cursor: pointer;
   width: 50%;
   height: 40px;
