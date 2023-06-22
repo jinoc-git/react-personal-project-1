@@ -28,7 +28,10 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     line-height: 1;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgb(25, 25, 25);
+  }
+  h1 {
+    cursor: pointer;
   }
   h2 {
   cursor: default;
@@ -39,6 +42,7 @@ const GlobalStyle = createGlobalStyle`
   h3 {
     font-size: 28px;
     font-weight: 600;
+    line-height: 1.2;
   }
   ol, ul {
     list-style: none;

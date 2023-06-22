@@ -1,14 +1,17 @@
-import Form from "./Form";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+  const goToHome = () => {
+    navigate("/");
+  };
   return (
     <StHeader>
-      <StTitleDiv>
-        <h1>My Todo List</h1>
+      <StTitleNav>
+        <h1 onClick={goToHome}>My Todo List</h1>
         <p>React</p>
-      </StTitleDiv>
-      <Form />
+      </StTitleNav>      
     </StHeader>
   );
 }
@@ -16,12 +19,18 @@ function Header() {
 export default Header;
 
 const StHeader = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(25, 25, 25);
 `;
 
-const StTitleDiv = styled.div`
+const StTitleNav = styled.nav`
   cursor: default;
+  width: 1200px;
   display: flex;
   justify-content: space-between;
   padding: 20px;

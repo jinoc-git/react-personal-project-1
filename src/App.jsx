@@ -1,18 +1,7 @@
-import GlobalStyle from "./components/GlobalStyle";
-import Layout from "./components/Layout";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import Router from "./shared/Router";
 
 function App() {
-  return (
-    <>
-      <GlobalStyle></GlobalStyle>
-      <Layout>
-        <Header />
-        <Main />
-      </Layout>
-    </>
-  );
+  return <Router></Router>;
 }
 
 export default App;
