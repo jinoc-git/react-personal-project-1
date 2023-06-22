@@ -1,7 +1,41 @@
 import React from "react";
+import { useState } from "react";
 import { styled } from "styled-components";
+import uuid from "react-uuid";
+import { useDispatch } from "react-redux";
+import { createTodo } from "../redux/modules/changeTodosHandler";
 
-function Form({ onSubmitHandler, titleHandler, bodyHandler, title, body }) {
+function Form() {
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const titleHandler = ({ target }) => {
+    setTitle(target.value);
+  };
+  const bodyHandler = ({ target }) => {
+    setBody(target.value);
+  };
+  const dispatch = useDispatch();
+
+  const afterSubmit = () => {
+    setTitle("");
+    setBody("");
+  };
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    if (title.length === 0 || body.length === 0) {
+      alert("제목과 내용을 입력해 주세요.");
+      return false;
+    }
+    const data = {
+      id: uuid(),
+      title,
+      body,
+      isDone: false,
+    };
+    dispatch(createTodo(data));
+    afterSubmit();
+  };
+  
   return (
     <StForm name="todolist-form" onSubmit={onSubmitHandler}>
       <div>

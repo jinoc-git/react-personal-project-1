@@ -1,11 +1,10 @@
 import { createStore } from "redux";
 import { combineReducers } from "redux";
-import changeStateHandler from "../modules/submit";
+import todosHandler from "../modules/changeTodosHandler";
 
 // 모든 state들을 묶음
 const rootReducer = combineReducers({
-  changeStateHandler,
-  
+  todosHandler,
 });
 const store = createStore(rootReducer);
 
