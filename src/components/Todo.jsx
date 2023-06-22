@@ -1,3 +1,4 @@
+import Button from "./Button";
 import { styled } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { changeTodo, deleteTodo } from "../redux/modules/changeTodosHandler";
@@ -8,28 +9,28 @@ function Todo({ item }) {
     return state.todosHandler;
   });
   const dispatch = useDispatch();
+  const deleteBtnHandler = (e) => {
+    e.preventDefault();
+    dispatch(deleteTodo({ todos, id: item.id }));
+  };
+  const chageStateBtnHandler = (e) => {
+    e.preventDefault();
+    dispatch(changeTodo({ todos, id: item.id }));
+  };
   return (
     <Wrapper>
-      <StLink to={"/todo"}>
+      <StLink to={`/todo/${item.id}`}>
         <StH3>{item.title}</StH3>
         <StP>{item.body}</StP>
         <StBtnWrapper>
-          <StButton
-            color={"red"}
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(deleteTodo({ todos, id: item.id }));
-            }}>
+          <Button colors={"red"} eventFnc={deleteBtnHandler}>
             삭제하기
-          </StButton>
-          <StButton
-            color={item.isDone ? "yellow" : "green"}
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(changeTodo({ todos, id: item.id }));
-            }}>
+          </Button>
+          <Button
+            colors={item.isDone ? "yellow" : "green"}
+            eventFnc={chageStateBtnHandler}>
             {item.isDone ? "취소" : "완료"}
-          </StButton>
+          </Button>
         </StBtnWrapper>
       </StLink>
     </Wrapper>
@@ -68,32 +69,37 @@ const StBtnWrapper = styled.div`
   display: flex;
   gap: 10px;
 `;
-const StButton = styled.button`
+export const StButton = styled.button`
   cursor: pointer;
-  width: 50%;
+  width: 120px;
   height: 40px;
   color: #fff;
   border: 2px solid
-    ${({ color }) => {
-      switch (color) {
+    ${({ colors }) => {
+      switch (colors) {
         case "red":
           return "rgba(255, 0, 0, 1)";
         case "green":
           return "rgba(0, 202, 0, 1)";
         case "yellow":
           return "rgba(255, 255, 0, 1)";
+        default:
+          return "rgba(0, 128, 128, 1)";
       }
     }};
   border-radius: 10px;
-  box-shadow: ${({ color }) => {
-    switch (color) {
+  box-shadow: ${({ colors }) => {
+    switch (colors) {
       case "red":
         return "rgba(255, 0, 0, 0.6) 0px 3px 8px";
       case "green":
         return "rgba(0, 255, 0, 0.24) 0px 3px 8px";
       case "yellow":
         return "rgba(255, 255, 0, 0.4) 0px 3px 8px";
+      default:
+        return "rgba(0, 128, 128, 0.5) 0px 3px 8px;";
     }
   }};
-  background-color: transparent;
+  background-color: ${({ colors }) =>
+    colors === "teal" ? "teal" : "transparent"};
 `;
